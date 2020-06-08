@@ -1,18 +1,38 @@
 import { TodoActionTypes } from "./types";
 
-const createTodo = (text) => ({
+const createTodo = (todo) => ({
   type: TodoActionTypes.CREATE_TODO,
-  payload: { text },
+  payload: { todo },
 });
 
-const removeTodo = (text) => ({
+const removeTodo = (todo) => ({
   type: TodoActionTypes.REMOVE_TODO,
-  payload: { text },
+  payload: { todo },
 });
 
-const completedTodo = (text) => ({
+const completedTodo = (todo) => ({
   type: TodoActionTypes.COMPLETED_TODO,
-  payload: { text },
+  payload: { todo },
 });
 
-export { createTodo, removeTodo, completedTodo };
+const loadTodosStart = () => ({
+  type: TodoActionTypes.LOAD_TODOS_START,
+});
+
+const loadTodosSuccess = (todos) => ({
+  type: TodoActionTypes.LOAD_TODOS_SUCCESS,
+  payload: { todos },
+});
+
+const loadTodosFailure = () => ({
+  type: TodoActionTypes.LOAD_TODOS_FAILURE,
+});
+
+export {
+  createTodo,
+  removeTodo,
+  completedTodo,
+  loadTodosStart,
+  loadTodosSuccess,
+  loadTodosFailure,
+};
