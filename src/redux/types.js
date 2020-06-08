@@ -1,0 +1,5 @@
+export const TodoActionTypes = {
+  CREATE_TODO: "CREATE_TODO",
+  REMOVE_TODO: "REMOVE_TODO",
+  COMPLETED_TODO: "COMPLETED_TODO",
+};
