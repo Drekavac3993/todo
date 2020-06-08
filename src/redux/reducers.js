@@ -1,52 +1,48 @@
 import { TodoActionTypes } from "./types";
 
-const isLoading = (state = false, action) => {
-  const { type } = action;
+const initialState = { isLoading: false, data: [] };
 
-  switch (type) {
-    case TodoActionTypes.LOAD_TODOS_START:
-      return true;
-
-    case TodoActionTypes.LOAD_TODOS_SUCCESS:
-    case TodoActionTypes.LOAD_TODOS_FAILURE:
-      return false;
-
-    default:
-      return state;
-  }
-};
-
-const todoReducer = (state = [], actions) => {
+const todos = (state = initialState, actions) => {
   const { type, payload } = actions;
 
   switch (type) {
     case TodoActionTypes.CREATE_TODO: {
       const { todo } = payload;
-      return state.concat(todo);
+      return { ...state, data: state.data.concat(todo) };
     }
 
     case TodoActionTypes.REMOVE_TODO: {
       const { todo: todoToRemove } = payload;
-      return state.filter((todo) => todo.id !== todoToRemove.id);
+      return {
+        ...state,
+        data: state.data.filter((todo) => todo.id !== todoToRemove.id),
+      };
     }
 
     case TodoActionTypes.COMPLETED_TODO: {
       const { todo: updatedTodo } = payload;
-      return state.map((todo) =>
-        todo.id === updatedTodo.id ? updatedTodo : todo
-      );
+      return {
+        ...state,
+        data: state.data.map((todo) =>
+          todo.id === updatedTodo.id ? updatedTodo : todo
+        ),
+      };
     }
 
     case TodoActionTypes.LOAD_TODOS_SUCCESS: {
       const { todos } = payload;
-      return todos;
+      return { ...state, isLoading: false, data: todos };
     }
 
     case TodoActionTypes.LOAD_TODOS_START:
+      return { ...state, isLoading: true };
+
     case TodoActionTypes.LOAD_TODOS_FAILURE:
+      return { ...state, isLoading: false };
+
     default:
       return state;
   }
 };
 
-export { todoReducer, isLoading };
+export default todos;
