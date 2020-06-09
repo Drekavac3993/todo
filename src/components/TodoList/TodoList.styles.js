@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const BigRedText = styled.div``;
-
 const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,3 +9,5 @@ const ListWrapper = styled.div`
   margin: 0 auto;
   padding-top: 20px;
 `;
+
+export { ListWrapper };

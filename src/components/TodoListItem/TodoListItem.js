@@ -1,23 +1,24 @@
 import React from "react";
-import "./TodoListItem.css";
+import {
+  TodoItemContainer,
+  TodoItemTitle,
+  ButtonsContainer,
+  CompletedButton,
+  RemoveButton,
+} from "./TodoListItem.styles";
 
 const TodoListItem = ({ todo, onRemovePress, onCompletedPress }) => (
-  <div className="todo-item-container">
-    <h1 className="todo-item-title">{todo.text}</h1>
-    <div className="buttons-container">
+  <TodoItemContainer>
+    <TodoItemTitle>{todo.text}</TodoItemTitle>
+    <ButtonsContainer>
       {todo.isCompleted ? null : (
-        <button
-          className="completed-button"
-          onClick={() => onCompletedPress(todo.id)}
-        >
+        <CompletedButton onClick={() => onCompletedPress(todo.id)}>
           Mark As Completed
-        </button>
+        </CompletedButton>
       )}
-      <button className="remove-button" onClick={() => onRemovePress(todo.id)}>
-        Remove
-      </button>
-    </div>
-  </div>
+      <RemoveButton onClick={() => onRemovePress(todo.id)}>Remove</RemoveButton>
+    </ButtonsContainer>
+  </TodoItemContainer>
 );
 
 export default TodoListItem;

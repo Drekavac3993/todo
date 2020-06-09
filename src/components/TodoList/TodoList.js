@@ -12,7 +12,7 @@ import {
   removeTodoRequest,
   markTodoAsCompletedRequest,
 } from "../../redux/thunks";
-import "./TodoList.css";
+import { ListWrapper } from "./TodoList.styles";
 
 const TodoList = ({
   completedTodos,
@@ -28,7 +28,7 @@ const TodoList = ({
   const loadingMessage = <div>Loading todos...</div>;
 
   const content = (
-    <div className="list-wrapper">
+    <ListWrapper>
       <TodoForm />
       <h3>Incomplete:</h3>
       {incompletedTodos.map((todo) => (
@@ -48,7 +48,7 @@ const TodoList = ({
           onRemovePress={onRemovePress}
         />
       ))}
-    </div>
+    </ListWrapper>
   );
 
   return isLoading ? loadingMessage : content;

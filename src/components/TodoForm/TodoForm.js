@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getTodos } from "../../redux/selectors";
 import { addTodoRequest } from "../../redux/thunks";
-import "./TodoForm.css";
+import { TodoFormContainer, TodoInput, TodoButton } from "./TodoForm.styles";
 
 const TodoForm = ({ todos, onCreatePress }) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div className="todo-form">
-      <input
-        className="todo-input"
+    <TodoFormContainer>
+      <TodoInput
         type="text"
         placeholder="Type new todo here"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button
-        className="todo-button"
+      <TodoButton
         onClick={() => {
           const isDuplicateText = todos.some(
             (todo) => todo.text === inputValue
@@ -29,8 +27,8 @@ const TodoForm = ({ todos, onCreatePress }) => {
         }}
       >
         Create Todo
-      </button>
-    </div>
+      </TodoButton>
+    </TodoFormContainer>
   );
 };
 
